@@ -8,9 +8,13 @@ if(isset($_POST['connexion'])){
    $statement->execute(); // execution de la requete
    $total_row=$statement->rowCount(); // conter le nombre de donné dans la base de donnée
    if($total_row==1){
-       header("Location:accueil.php");
+
+    session_start();
+    $_SESSION['id']=$statement->fetchColumn(0);
+    echo  $_SESSION['id'];
+      header("Location:accueil.php");
    }else{
-       echo 'mot de passe incorrecte';
+       echo '<b> mot de passe </b> ou <b> Email </b> incorrecte';
    }
    }
 ?>
